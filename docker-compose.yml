@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  db_gei:
+    image: mariadb:10.6
+    container_name: gestao_integrada_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: gei_root_password
+      MYSQL_DATABASE: gestao_integrada
+      MYSQL_USER: gei_user
+      MYSQL_PASSWORD: gei_password
+    volumes:
+      - gei_db_data:/var/lib/mysql
+
+  app_gei:
+    build: .
+    container_name: gestao_integrada_app
+    restart: always
+    ports:
+      - "8081:80"
+    depends_on:
+      - db_gei
+    environment:
+      - DB_HOST=db_gei
+      - DB_NAME=gestao_integrada
+      - DB_USER=gei_user
+      - DB_PASS=gei_password
+    volumes:
+      - .:/var/www/html
+
+volumes:
+  gei_db_data:
