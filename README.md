@@ -71,3 +71,4 @@ Distribuído sob a Licença Pública Geral GNU (GPL) Versão 2.
 
 ---
 *Documentação gerada automaticamente para o projeto GEI - 2026.*
+
